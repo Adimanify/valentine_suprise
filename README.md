@@ -1,2 +1,2 @@
 # valentine_suprise
-link --> https://adimanify.github.io/suprise/
+link --> https://adimanify.github.io/Suprise/

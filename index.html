@@ -236,6 +236,8 @@
 
         // No button evasion
         const noBtn = document.getElementById('noBtn');
+        let lastX = 0;
+        let lastY = 0;
         
         noBtn.addEventListener('mouseover', (e) => {
             moveButton(e);
@@ -247,12 +249,9 @@
         });
 
         function moveButton(event) {
-            const btn = noBtn;
-            const cardRect = mainCard.getBoundingClientRect();
-            
             // Get viewport dimensions
-            const maxX = window.innerWidth - btn.offsetWidth - 20;
-            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
             
             // Generate random position
             let newX, newY;
@@ -260,15 +259,19 @@
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             } while (
-                // Make sure it's not too close to the current position
-                Math.abs(newX - btn.offsetLeft) < 100 &&
-                Math.abs(newY - btn.offsetTop) < 100
+                // Make sure it's not too close to the last position
+                Math.abs(newX - lastX) < 100 &&
+                Math.abs(newY - lastY) < 100
             );
             
+            // Store the new position
+            lastX = newX;
+            lastY = newY;
+            
             // Position the button absolutely
-            btn.style.position = 'fixed';
-            btn.style.left = newX + 'px';
-            btn.style.top = newY + 'px';
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
         }
     </script>
 </body>
